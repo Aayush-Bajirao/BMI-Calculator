@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
@@ -11,8 +13,10 @@ class bmi_calc extends StatefulWidget {
 
 class _bmi_calcState extends State<bmi_calc> {
   double val = 150; //value of slider
-  int weight = 60;
-  int age = 60;
+  int weight_w = 0;
+  int weight = 0;
+  int age = 0;
+  int bmi = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +115,7 @@ class _bmi_calcState extends State<bmi_calc> {
                 ],
               ),
             ),
-//Second Row Slider section------------------------------------------------------------------
+//Second Row Slider section-variable=val------------------------------------------------------------------
             Container(
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
@@ -163,7 +167,7 @@ class _bmi_calcState extends State<bmi_calc> {
                     )
                   ],
                 )),
-//Third Row Wieght and Age options-----------------------------------------------------------
+//Third Row Wieght and Age options-variable=age, weight-----------------------------------------------------------
             Container(
               
               child: Row(
@@ -215,7 +219,7 @@ class _bmi_calcState extends State<bmi_calc> {
                                   children: <Widget>[
                                     Container(
                                       child: GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {setState(() {weight += 1;});},
                                         child: CircleAvatar(
                                           child: Icon(
                                             Icons.add,
@@ -226,9 +230,7 @@ class _bmi_calcState extends State<bmi_calc> {
                                     ),
                                     Container(
                                       child: GestureDetector(
-                                        onTap: () {
-                                          weight++;
-                                        },
+                                        onTap: () {setState(() {weight -= 1;});},
                                         child: CircleAvatar(
                                           child: Icon(
                                             Icons.remove,
@@ -291,7 +293,7 @@ class _bmi_calcState extends State<bmi_calc> {
                                   children: <Widget>[
                                     Container(
                                       child: GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {setState(() {age += 1;});},
                                         child: CircleAvatar(
                                           child: Icon(
                                             Icons.add,
@@ -304,9 +306,7 @@ class _bmi_calcState extends State<bmi_calc> {
                                       padding:
                                           EdgeInsets.symmetric(vertical: 10),
                                       child: GestureDetector(
-                                        onTap: () {
-                                          weight++;
-                                        },
+                                        onTap: () {setState(() {age -= 1;});},
                                         child: CircleAvatar(
                                           child: Icon(
                                             Icons.remove,
@@ -323,44 +323,56 @@ class _bmi_calcState extends State<bmi_calc> {
                 ],
               ),
             ),
-//Fourth Row Display options-----------------------------------------------------------------
-             Container(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                decoration: new BoxDecoration(
-                  borderRadius: new BorderRadius.circular(16.0),
-                  color: Color.fromARGB(255, 69, 67, 100),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      child: Column(
-                        children: [
-                          Text(
-                            '${val} cm',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
+//Fourth Row Display BMI-----------------------------------------------------------------
+             Expanded(
+               child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  padding: EdgeInsets.fromLTRB(70, 0, 70, 0),
+                  decoration: new BoxDecoration(
+                    borderRadius: new BorderRadius.circular(16.0),
+                    color: Color.fromARGB(255, 69, 67, 100),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                        child: Column(
+                          children: [
+                            Text(
+                              'Calculated BMI',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          Text(
-                            '${val} cm',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
+             
+                            Text(
+                              '${bmi}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        ],
+             
+                            Text(
+                              '${bmi}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        
                       ),
                       
-                    ),
-                    
-                  ],
-                )),
+                    ],
+                  )),
+             ),
 
           ],
         ),
