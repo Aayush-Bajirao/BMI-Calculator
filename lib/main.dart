@@ -13,10 +13,9 @@ class bmi_calc extends StatefulWidget {
 
 class _bmi_calcState extends State<bmi_calc> {
   double val = 150; //value of slider
-  int weight_w = 0;
   int weight = 0;
-  int age = 0;
-  int bmi = 0;
+  double age = 0;
+  double bmi = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,6 @@ class _bmi_calcState extends State<bmi_calc> {
           children: <Widget>[
 //First Row of app containing male and female options----------------------------------------
             Container(
-              
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -58,7 +56,8 @@ class _bmi_calcState extends State<bmi_calc> {
 //Male Box----------------------------------------------------------------
 
                               Container(
-                                padding: EdgeInsets.fromLTRB(40.0, 10.0, 40.0, 20.0),
+                                padding:
+                                    EdgeInsets.fromLTRB(40.0, 10.0, 40.0, 20.0),
                                 child: Icon(
                                   Icons.male,
                                   size: 50,
@@ -92,7 +91,8 @@ class _bmi_calcState extends State<bmi_calc> {
 //Female Box---------------------------------------------------------------------
 
                                 child: Container(
-                                padding: EdgeInsets.fromLTRB(40.0, 10.0, 40.0, 20.0),
+                                  padding: EdgeInsets.fromLTRB(
+                                      40.0, 10.0, 40.0, 20.0),
                                   child: Icon(
                                     Icons.female,
                                     size: 50,
@@ -142,7 +142,7 @@ class _bmi_calcState extends State<bmi_calc> {
 
                     Container(
                       child: Text(
-                        '${val} cm',
+                        '${val.toStringAsFixed(0)} cm',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 30,
@@ -169,7 +169,6 @@ class _bmi_calcState extends State<bmi_calc> {
                 )),
 //Third Row Wieght and Age options-variable=age, weight-----------------------------------------------------------
             Container(
-              
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -219,7 +218,11 @@ class _bmi_calcState extends State<bmi_calc> {
                                   children: <Widget>[
                                     Container(
                                       child: GestureDetector(
-                                        onTap: () {setState(() {weight += 1;});},
+                                        onTap: () {
+                                          setState(() {
+                                            weight += 1;
+                                          });
+                                        },
                                         child: CircleAvatar(
                                           child: Icon(
                                             Icons.add,
@@ -230,7 +233,15 @@ class _bmi_calcState extends State<bmi_calc> {
                                     ),
                                     Container(
                                       child: GestureDetector(
-                                        onTap: () {setState(() {weight -= 1;});},
+                                        onTap: () {
+                                          setState(() {
+                                            if (weight > 0) {
+                                              if (weight > 0) {
+                                                weight -= 1;
+                                              }
+                                            }
+                                          });
+                                        },
                                         child: CircleAvatar(
                                           child: Icon(
                                             Icons.remove,
@@ -257,8 +268,8 @@ class _bmi_calcState extends State<bmi_calc> {
                         ),
                         child: Column(
                           children: [
-                  //Age Textbox-----------------------------------------------------------
-                  //variable age
+                            //Age Textbox-----------------------------------------------------------
+                            //variable age
 
                             Container(
                               padding: EdgeInsets.symmetric(
@@ -266,8 +277,7 @@ class _bmi_calcState extends State<bmi_calc> {
                               child: Text(
                                 'AGE',
                                 style: TextStyle(
-                                                                    fontSize: 20,
-
+                                  fontSize: 20,
                                   color: Colors.grey,
                                 ),
                               ),
@@ -275,7 +285,7 @@ class _bmi_calcState extends State<bmi_calc> {
                             Container(
                               padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 10.0),
                               child: Text(
-                                '${age}',
+                                '${age.toStringAsFixed(0)}',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -284,7 +294,7 @@ class _bmi_calcState extends State<bmi_calc> {
                               ),
                             ),
 
-                  //Age Buttonbox-----------------------------------------------------------
+                            //Age Buttonbox-----------------------------------------------------------
                             Container(
                               child: Row(
                                   mainAxisAlignment:
@@ -293,7 +303,11 @@ class _bmi_calcState extends State<bmi_calc> {
                                   children: <Widget>[
                                     Container(
                                       child: GestureDetector(
-                                        onTap: () {setState(() {age += 1;});},
+                                        onTap: () {
+                                          setState(() {
+                                            age += 1;
+                                          });
+                                        },
                                         child: CircleAvatar(
                                           child: Icon(
                                             Icons.add,
@@ -306,7 +320,13 @@ class _bmi_calcState extends State<bmi_calc> {
                                       padding:
                                           EdgeInsets.symmetric(vertical: 10),
                                       child: GestureDetector(
-                                        onTap: () {setState(() {age -= 1;});},
+                                        onTap: () {
+                                          setState(() {
+                                            if (age > 0) {
+                                              age -= 1;
+                                            }
+                                          });
+                                        },
                                         child: CircleAvatar(
                                           child: Icon(
                                             Icons.remove,
@@ -324,10 +344,10 @@ class _bmi_calcState extends State<bmi_calc> {
               ),
             ),
 //Fourth Row Display BMI-----------------------------------------------------------------
-             Expanded(
-               child: Container(
+            Expanded(
+              child: Container(
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                  padding: EdgeInsets.fromLTRB(70, 0, 70, 0),
+                  padding: EdgeInsets.fromLTRB(70, 0, 75, 0),
                   decoration: new BoxDecoration(
                     borderRadius: new BorderRadius.circular(16.0),
                     color: Color.fromARGB(255, 69, 67, 100),
@@ -347,33 +367,21 @@ class _bmi_calcState extends State<bmi_calc> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-             
                             Text(
-                              '${bmi}',
+                              '${(weight / (val / 100 * val / 100)).toStringAsFixed(2)}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 30,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-             
-                            Text(
-                              '${bmi}',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            
                           ],
                         ),
-                        
                       ),
-                      
                     ],
                   )),
-             ),
-
+            ),
           ],
         ),
       ),
