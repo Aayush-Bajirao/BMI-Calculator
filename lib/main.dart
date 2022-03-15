@@ -11,6 +11,7 @@ class bmi_calc extends StatefulWidget {
 
 class _bmi_calcState extends State<bmi_calc> {
   double val = 150; //value of slider
+  int weight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -167,92 +168,87 @@ class _bmi_calcState extends State<bmi_calc> {
                   ],
                 )
               ),
-//Wieght and Age container-----------------------------------------------------------------------
+//Third Row of app containing Wieght and Age options----------------------------------------
             Container(
               padding: EdgeInsets.symmetric(vertical: 10),
-//First Row of app containing male and female options----------------------------------------
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  GestureDetector(
-                    onTap: () {},
-                    child: Expanded(
-                      child: Container(
-                        child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: new BoxDecoration(
-                              borderRadius: new BorderRadius.circular(16.0),
-                              color: Color.fromARGB(255, 69, 67, 100),
-                            ),
-                            child: Column(
-                              children: [
-//Male Box----------------------------------------------------------------
+                  Expanded(
+                    child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 30),
+                        padding: EdgeInsets.all(10),
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(16.0),
+                          color: Color.fromARGB(255, 69, 67, 100),
+                        ),
+                        child: Column(
+                          children: [
 
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(
-                                      40.0, 30.0, 40.0, 30.0),
-                                  child: Icon(
-                                    Icons.male,
-                                    size: 50,
-                                    color: Colors.white,
-                                  ),
+//Weight Box----------------------------------------------------------------
+                            Container(
+                              child: Text(
+                                'WEIGHT',
+                                style: TextStyle(
+                                  color: Colors.grey,
                                 ),
-                                Container(
-                                  child: Text(
-                                    'MALE',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                    ),
-                                  ),
+                              ),
+                            ),
+                          
+                            Container(
+                              padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 10.0),
+                              child: Text('${weight}',
+                                style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 40.0,
                                 ),
-                              ],
-                            )),
-                      ),
-                    ),
+                              ),
+                            ),
+                          
+                            
+
+                          ],
+                        )),
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Expanded(
-                      child: Container(
-                        child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: new BoxDecoration(
-                              borderRadius: new BorderRadius.circular(16.0),
-                              color: Color.fromARGB(255, 69, 67, 100),
-                            ),
-                            child: Column(
-                              children: [
-                                Container(
-//Female Box---------------------------------------------------------------------
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 30),
+                        padding: EdgeInsets.all(10),
+                        decoration: new BoxDecoration(
+                          borderRadius: new BorderRadius.circular(16.0),
+                          color: Color.fromARGB(255, 69, 67, 100),
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+//Age Box---------------------------------------------------------------------
 
-                                  child: Container(
-                                    padding: EdgeInsets.fromLTRB(
-                                        40.0, 30.0, 40.0, 30.0),
-                                    child: Icon(
-                                      Icons.female,
-                                      size: 50,
-                                      color: Colors.white,
-                                    ),
-                                  ),
+                              child: Container(
+                                padding: EdgeInsets.fromLTRB(
+                                    40.0, 30.0, 40.0, 30.0),
+                                child: Icon(
+                                  Icons.female,
+                                  size: 50,
+                                  color: Colors.white,
                                 ),
-                                Container(
-                                  child: Text(
-                                    'FEMALE',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                    ),
-                                  ),
+                              ),
+                            ),
+                            Container(
+                              child: Text(
+                                'FEMALE',
+                                style: TextStyle(
+                                  color: Colors.grey,
                                 ),
-                              ],
-                            )),
-                      ),
-                    ),
+                              ),
+                            ),
+                          ],
+                        )),
                   ),
                 ],
               ),
             ),
-             
-
+            
 
             
           ],
