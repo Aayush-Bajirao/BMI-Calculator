@@ -12,6 +12,7 @@ class bmi_calc extends StatefulWidget {
 class _bmi_calcState extends State<bmi_calc> {
   double val = 150; //value of slider
   int weight = 60;
+  int age = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +34,9 @@ class _bmi_calcState extends State<bmi_calc> {
 //column for whole app page----------------------------------------
         child: Column(
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 10),
 //First Row of app containing male and female options----------------------------------------
+            Container(
+              
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -43,83 +44,77 @@ class _bmi_calcState extends State<bmi_calc> {
                     onTap: () {},
                     child: Expanded(
                       child: Container(
-                        child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: new BoxDecoration(
-                              borderRadius: new BorderRadius.circular(16.0),
-                              color: Color.fromARGB(255, 69, 67, 100),
-                            ),
-                            child: Column(
-                              children: [
+                          padding: EdgeInsets.all(10),
+                          decoration: new BoxDecoration(
+                            borderRadius: new BorderRadius.circular(16.0),
+                            color: Color.fromARGB(255, 69, 67, 100),
+                          ),
+                          child: Column(
+                            children: [
 //Male Box----------------------------------------------------------------
 
-                                Container(
-                                  padding: EdgeInsets.fromLTRB(
-                                      40.0, 30.0, 40.0, 30.0),
-                                  child: Icon(
-                                    Icons.male,
-                                    size: 50,
-                                    color: Colors.white,
+                              Container(
+                                padding: EdgeInsets.fromLTRB(40.0, 10.0, 40.0, 20.0),
+                                child: Icon(
+                                  Icons.male,
+                                  size: 50,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Container(
+                                child: Text(
+                                  'MALE',
+                                  style: TextStyle(
+                                    color: Colors.grey,
                                   ),
                                 ),
-                                Container(
-                                  child: Text(
-                                    'MALE',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )),
-                      ),
+                              ),
+                            ],
+                          )),
                     ),
                   ),
                   GestureDetector(
                     onTap: () {},
                     child: Expanded(
                       child: Container(
-                        child: Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: new BoxDecoration(
-                              borderRadius: new BorderRadius.circular(16.0),
-                              color: Color.fromARGB(255, 69, 67, 100),
-                            ),
-                            child: Column(
-                              children: [
-                                Container(
+                          padding: EdgeInsets.all(10),
+                          decoration: new BoxDecoration(
+                            borderRadius: new BorderRadius.circular(16.0),
+                            color: Color.fromARGB(255, 69, 67, 100),
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
 //Female Box---------------------------------------------------------------------
 
-                                  child: Container(
-                                    padding: EdgeInsets.fromLTRB(
-                                        40.0, 30.0, 40.0, 30.0),
-                                    child: Icon(
-                                      Icons.female,
-                                      size: 50,
-                                      color: Colors.white,
-                                    ),
+                                child: Container(
+                                padding: EdgeInsets.fromLTRB(40.0, 10.0, 40.0, 20.0),
+                                  child: Icon(
+                                    Icons.female,
+                                    size: 50,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                Container(
-                                  child: Text(
-                                    'FEMALE',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                    ),
+                              ),
+                              Container(
+                                child: Text(
+                                  'FEMALE',
+                                  style: TextStyle(
+                                    color: Colors.grey,
                                   ),
                                 ),
-                              ],
-                            )),
-                      ),
+                              ),
+                            ],
+                          )),
                     ),
                   ),
                 ],
               ),
             ),
+//Second Row Slider section------------------------------------------------------------------
             Container(
-//Slider section--------------------------------------------------------------------
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                 decoration: new BoxDecoration(
                   borderRadius: new BorderRadius.circular(16.0),
                   color: Color.fromARGB(255, 69, 67, 100),
@@ -143,7 +138,7 @@ class _bmi_calcState extends State<bmi_calc> {
 
                     Container(
                       child: Text(
-                        '${val}cm',
+                        '${val} cm',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 30,
@@ -161,86 +156,166 @@ class _bmi_calcState extends State<bmi_calc> {
                               max: 225,
                               divisions: 100,
                               onChanged: (double value) => (setState(() {
-                                    val = value;}))),
+                                    val = value;
+                                  }))),
                         ],
                       ),
                     )
                   ],
-                )
-              ),
-//Third Row of app containing Wieght and Age options----------------------------------------
+                )),
+//Third Row Wieght and Age options-----------------------------------------------------------
             Container(
-              padding: EdgeInsets.symmetric(vertical: 10),
+              
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
+                  //Weight Box----------------------------------------------------------------
+
                   Expanded(
                     child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 30),
-                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.fromLTRB(30, 0, 10, 0),
+                        padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
                         decoration: new BoxDecoration(
                           borderRadius: new BorderRadius.circular(16.0),
                           color: Color.fromARGB(255, 69, 67, 100),
                         ),
                         child: Column(
                           children: [
-
-//Weight Box----------------------------------------------------------------
+                            //Weight Textbox-----------------------------------------------------------
+                            //variable weight
                             Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 10),
                               child: Text(
                                 'WEIGHT',
                                 style: TextStyle(
+                                  fontSize: 20,
                                   color: Colors.grey,
                                 ),
                               ),
                             ),
-                          
                             Container(
                               padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 10.0),
-                              child: Text('${weight}',
+                              child: Text(
+                                '${weight}',
                                 style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 40.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40.0,
                                 ),
                               ),
                             ),
-                          
-                            
-
+                            //Weight Butonbox-----------------------------------------------------------
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 10),
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                      child: GestureDetector(
+                                        onTap: () {},
+                                        child: CircleAvatar(
+                                          child: Icon(
+                                            Icons.add,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          weight++;
+                                        },
+                                        child: CircleAvatar(
+                                          child: Icon(
+                                            Icons.remove,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
+                            ),
                           ],
                         )),
                   ),
+
+                  //Age Box---------------------------------------------------------------------
+
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 30),
-                        padding: EdgeInsets.all(10),
+                        margin: EdgeInsets.fromLTRB(10, 0, 30, 0),
+                        padding: EdgeInsets.fromLTRB(25, 10, 25, 10),
                         decoration: new BoxDecoration(
                           borderRadius: new BorderRadius.circular(16.0),
                           color: Color.fromARGB(255, 69, 67, 100),
                         ),
                         child: Column(
                           children: [
-                            Container(
-//Age Box---------------------------------------------------------------------
+                  //Age Textbox-----------------------------------------------------------
+                  //variable age
 
-                              child: Container(
-                                padding: EdgeInsets.fromLTRB(
-                                    40.0, 30.0, 40.0, 30.0),
-                                child: Icon(
-                                  Icons.female,
-                                  size: 50,
-                                  color: Colors.white,
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 10),
+                              child: Text(
+                                'AGE',
+                                style: TextStyle(
+                                                                    fontSize: 20,
+
+                                  color: Colors.grey,
                                 ),
                               ),
                             ),
                             Container(
+                              padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 10.0),
                               child: Text(
-                                'FEMALE',
+                                '${age}',
                                 style: TextStyle(
-                                  color: Colors.grey,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 40.0,
                                 ),
                               ),
+                            ),
+
+                  //Age Buttonbox-----------------------------------------------------------
+                            Container(
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Container(
+                                      child: GestureDetector(
+                                        onTap: () {},
+                                        child: CircleAvatar(
+                                          child: Icon(
+                                            Icons.add,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 10),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          weight++;
+                                        },
+                                        child: CircleAvatar(
+                                          child: Icon(
+                                            Icons.remove,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ]),
                             ),
                           ],
                         )),
@@ -248,9 +323,45 @@ class _bmi_calcState extends State<bmi_calc> {
                 ],
               ),
             ),
-            
+//Fourth Row Display options-----------------------------------------------------------------
+             Container(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                decoration: new BoxDecoration(
+                  borderRadius: new BorderRadius.circular(16.0),
+                  color: Color.fromARGB(255, 69, 67, 100),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      child: Column(
+                        children: [
+                          Text(
+                            '${val} cm',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '${val} cm',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      
+                    ),
+                    
+                  ],
+                )),
 
-            
           ],
         ),
       ),
